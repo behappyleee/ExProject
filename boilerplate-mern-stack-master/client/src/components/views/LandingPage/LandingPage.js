@@ -6,9 +6,6 @@ import { FaCode } from "react-icons/fa";
 const { Title } = Typography;
 const { Meta } = Card;
 
-
-
-
 function LandingPage() {
 
     // Video 를 빈 배열로 가져옴 
