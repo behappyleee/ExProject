@@ -2,24 +2,21 @@ import React, { useEffect, useState } from 'react';
 import {Row, Col, List, Avatar} from 'antd';
 import Axios from 'axios';
 import { response } from 'express';
-import { post } from '../../../../../server/routes/video';
 import Subscribe from '../NavBar/Sections/Subscribe';
 
 function VideioDetailPage(props) {
     
+    const videoId = props.match.params.videoId
+    const variable = { videoId: videoId }
+    const [VideoDetail, setVideoDetail] = useState([]);
+
     useEffect(() => {
-
-        const videoId = props.match.params.videoId
-        const variable = { videoId: videoId }
-
-        const [VideoDetail, setVideoDetail ] = useState([]);
-
        Axios.post('/api/video/getVideoDetail', variable)
-            .then(reponse => {
+            .then(response => {
                 if(response.data.success) {
                     setVideoDetail( response.data.VideoDetail )
                 } else {
-                    alert('비디오 정보를 가져오기 실패하였습니다.');5
+                    alert('비디오 정보를 가져오기 실패하였습니다.');
                 }
             })
     }, [])
@@ -32,14 +29,13 @@ function VideioDetailPage(props) {
                      <div style={{ width: '100%', padding:'3rem 4rem' }}>
                          <video style={{ width: '100%'  }}  src={ `http://localhost:5000/${VideoDetail.filePath} `} />
                      <List.Item
-                         actions={ <Subscribe /> }
+                         actions={ <Subscribe userTo={VideoDetail.writer} /> }
                      >
                          <List.Item.Meta
                              avatar={<Avatar src={ VideoDetail.writer.image } />}
-                             title={ post.writer.name }
+                             title={ VideoDetail.writer.name }
                              description={ VideoDetail.description }
                          />
-     
                         
                      </List.Item>
                      {/* Comments */}

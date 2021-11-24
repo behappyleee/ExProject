@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useSelector } from 'react'
 import Axios from 'axios';
 import { Typography, Button, Form, Message, Input, Icon, message } from 'antd';
 import Dropzone from 'react-dropzone';
@@ -17,7 +17,7 @@ const CategoryOptions = [
     { value:3, label: 'Pets & Animals' }
 ]
 function VideoUploadPage(props) {
-    const user = useRSelector(state => state.user);
+    const user = useSelector(state => state.user);
     const [VideoTitle, setVideoTitle] = useState('');
     const [Description, setDescription] = useState('');
     const [Private, setPrivate] = useState(0);
