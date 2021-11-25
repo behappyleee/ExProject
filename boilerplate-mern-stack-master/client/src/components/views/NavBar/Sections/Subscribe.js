@@ -6,13 +6,42 @@ function Subscribe(props) {
     const [subscribeNumber , setSubscribeNumber ] = useState(0);
     const [Subscribed, setSubscribed ] = useState(false)
 
+    const onSubscribe =() => {
+
+        let subscirbeVariable = {
+            userTo : props.userTo,
+            userFrom : props.userFrom,
+        }
+
+        // 이미 구독중이라면 
+        if(Subscribed) {
+             Axios.post('/api/subscribe/unSubscribe', subscirbeVariable )
+                .then( response => {
+                    if(response.data.success) {
+                        setSubscribeNumber(subscribedNumber - 1);
+                    } else {
+                        alert('구독 취소 하는데 실패하였습니다.');
+                    }
+                })
+
+        // 아직 구독중이 아니라면
+        } else {
+            Axios.post('/api/subscribe/subscribe', subscirbeVariable )
+                .then( response => {
+                    if(response.data.success) {
+                        setSubscribeNumber(subscribeNumber + 1);
+                        setSubscribed(!Subscribed);
+                    } else {
+                        alert('구독하는데 실패하였습니다.');
+                    }
+                })
+        }
+    }
+
     useEffect(() => {
-        
         let variable = {
             userTo : props.userTo,
-
         }
-       
         Axios.post('/api/subscribe/subscribeNumber', variable)
             .then( response => {
                 if(response.data.success) {
@@ -32,22 +61,18 @@ function Subscribe(props) {
                     alert('정보를 받아오지 못했습니다.');
                 }
             })
-
-
-
     }, [])
-    
-    
+
     return (
         <div>
             <button
                 style= {{ 
-                    backgroundColor: `${Subscribe ? '#CC0000':'#AAAAAA' }` , 
+                    backgroundColor: `${Subscribed ? '#CC0000':'#AAAAAA' }` , 
                     borderRadius: '4px',
                     color: 'white', padding: '10px 16px', fontWeight: '500',         
                     fontSize: '1rem', textTransform: 'uppercase'
                 }}
-               onClick
+               onClick={onSubscribe}
             >
                 {subscribeNumber} {Subscribed ? 'Subscribed' : 'Subscribe' }
 
