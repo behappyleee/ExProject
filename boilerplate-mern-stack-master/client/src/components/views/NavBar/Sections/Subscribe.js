@@ -1,5 +1,5 @@
-import Axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import Axios from 'axios';
 
 function Subscribe(props) {
     
@@ -18,7 +18,7 @@ function Subscribe(props) {
              Axios.post('/api/subscribe/unSubscribe', subscirbeVariable )
                 .then( response => {
                     if(response.data.success) {
-                        setSubscribeNumber(subscribedNumber - 1);
+                        setSubscribeNumber(subscribeNumber - 1);
                     } else {
                         alert('구독 취소 하는데 실패하였습니다.');
                     }
@@ -45,7 +45,7 @@ function Subscribe(props) {
         Axios.post('/api/subscribe/subscribeNumber', variable)
             .then( response => {
                 if(response.data.success) {
-                    setSubscribeNumber(response.data.subscribedNumber); 
+                    setSubscribeNumber(response.data.subscribeNumber); 
                 } else{
                     alert('구독 자 수 정보를 받아오지 못했습니다.')
                 }

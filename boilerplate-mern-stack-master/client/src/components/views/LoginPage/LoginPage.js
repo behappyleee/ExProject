@@ -57,6 +57,7 @@ function LoginPage(props) {
               }
             })
             .catch(err => {
+              console.log('LOGIN ERROR : ' , err);
               setFormErrorMessage('Check out your Account or Password again')
               setTimeout(() => {
                 setFormErrorMessage("")

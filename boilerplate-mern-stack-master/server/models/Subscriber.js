@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const subscriberSchema = mongoose.Schema({
     userTo : {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User', 
 
     },
     userFrom: {
@@ -17,4 +17,4 @@ const subscriberSchema = mongoose.Schema({
 
 const Subscriber = mongoose.model('Subscriber', subscriberSchema);
 
-module.exports = { Video }
+module.exports = { Subscriber }
