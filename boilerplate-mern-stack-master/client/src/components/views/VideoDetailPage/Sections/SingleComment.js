@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import {Comment, Avatar, Button, Input} from 'antd';
 import { useSelector } from 'react-redux';
+import Axios from 'axios';
+
+
 
 function SingleComment(props) {
 
@@ -35,7 +38,6 @@ function SingleComment(props) {
                     alert('코멘트를 저장하지 못했습니다. ');
                 }
             })
-
     }
 
     const actions = [
