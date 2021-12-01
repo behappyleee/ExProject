@@ -51,7 +51,7 @@ function Comment(props) {
                 // JSX 문법은 div 나 React.Fragment 로 감싸주어야 함 
                 <React.Fragment>
                     <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={videoId} />
-                    <ReplyComment parentCommentId={} commentList={ props.commentList } />  
+                    <ReplyComment refreshFunction={props.refreshFunction} parentCommentId={comment._id} postId={videoId} commentList={ props.commentList } />  
                 </React.Fragment>
                   } 
             })}

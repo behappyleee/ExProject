@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import {Comment, Avatar, Button, Input} from 'antd';
 import { useSelector } from 'react-redux';
 import Axios from 'axios';
-
-
+import LikeDislikes from './LikeDislikes';
 
 function SingleComment(props) {
 
@@ -15,7 +14,7 @@ function SingleComment(props) {
     }
 
     const onHandleChange = (event) => {
-        setCommentValue(event.currentTarget.CommentValue )
+        setCommentValue(event.currentTarget.value )
     }
 
     const onSubmit = (event) => {
@@ -33,6 +32,7 @@ function SingleComment(props) {
                 if(response.data.success) {
                     console.log('Comment Response Data' , response.data.result );
                     setCommentValue('');
+                    setOpenReply(false);
                     props.refreshFunction(response.data.result);
                 } else {
                     alert('코멘트를 저장하지 못했습니다. ');
@@ -41,6 +41,7 @@ function SingleComment(props) {
     }
 
     const actions = [
+        <LikeDislikes  userId={localStorage.getItem('userId')} commentId={props.comment._id} />,
         <span onClick={onClickReplyOpen} key="comment-basic-replay-to">Reply to</span>
     ]    
 
