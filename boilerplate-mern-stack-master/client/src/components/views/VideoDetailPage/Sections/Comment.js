@@ -28,7 +28,7 @@ function Comment(props) {
             postId : videoId
         }
 
-        Axios.post('/api/comment/saveComment', )
+        Axios.post('/api/comment/saveComment', variables)
             .then(response => {
                 if(response.data.success) {
                     console.log('Comment Response Data' , response.data.result );
@@ -46,15 +46,15 @@ function Comment(props) {
             <p> Replies </p>      
             <hr />
             {/* Comment Lists */}
-            {props.commentList && props.commentList.map((comment, index) => {
-                { !comment.responseTo &&
+            {props.commentList && props.commentList.map((comment, index) => (
+                (!comment.responseTo &&
                 // JSX 문법은 div 나 React.Fragment 로 감싸주어야 함 
                 <React.Fragment>
                     <SingleComment refreshFunction={props.refreshFunction} comment={comment} postId={videoId} />
                     <ReplyComment refreshFunction={props.refreshFunction} parentCommentId={comment._id} postId={videoId} commentList={ props.commentList } />  
                 </React.Fragment>
-                  } 
-            })}
+                )   
+            ))}
 
             {/* Root Comment Form */}
             <form  style={{ display : 'flex' }} onSubmit={onSubmit}>

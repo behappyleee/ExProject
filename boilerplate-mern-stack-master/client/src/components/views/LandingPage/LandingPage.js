@@ -1,8 +1,8 @@
-import { Typography, Card, Icon, Avatar, Col, Row } from 'antd';
+import { Typography, Card, Avatar, Col, Row } from 'antd';
 import Axios from 'axios';
 import moment from 'moment';
 import React, { useState, useEffect } from 'react'
-import { FaCode } from "react-icons/fa";
+
 const { Title } = Typography;
 const { Meta } = Card;
 

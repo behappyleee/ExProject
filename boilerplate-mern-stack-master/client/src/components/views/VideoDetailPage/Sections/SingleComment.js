@@ -5,7 +5,8 @@ import Axios from 'axios';
 import LikeDislikes from './LikeDislikes';
 
 function SingleComment(props) {
-
+    
+    const user = useSelector(state => state.user);
     const [OpenReply, setOpenReply ] = useState(false)
     const [CommentValue, setCommentValue] = useState('');
 
@@ -19,7 +20,7 @@ function SingleComment(props) {
 
     const onSubmit = (event) => {
         event.preventDefault();
-
+        
         const variables = {
             content: CommentValue,
             writer : user.userData._id,
