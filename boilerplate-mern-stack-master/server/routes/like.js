@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { Like } = require('../models/Like');
-const { Dislike } = require('../models/Disike');
+const { Dislike } = require('../models/Dislike');
 
 //=================================
 //             Like

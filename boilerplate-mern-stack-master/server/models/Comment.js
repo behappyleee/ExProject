@@ -20,6 +20,6 @@ const commentSchema = mongoose.Schema({
 
 }, {timestamp: true})
 
-const Comment = mongoose.model('Comment', subscriberSchema);
+const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = { Comment }
