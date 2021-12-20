@@ -1,7 +1,6 @@
 const { Schema } = require('mongoose');
 const mongoose = require('mongoose');
 
-
 const subscriberSchema = mongoose.Schema({
     userTo : {
         type: Schema.Types.ObjectId,

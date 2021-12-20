@@ -35,9 +35,8 @@ const userSchema = mongoose.Schema({
     }
 })
 
-
 userSchema.pre('save', function( next ) {
-    var user = this;
+    var user = this;    
     
     if(user.isModified('password')){    
         // console.log('password changed')
@@ -81,7 +80,7 @@ userSchema.statics.findByToken = function (token, cb) {
     var user = this;
 
     jwt.verify(token,'secret',function(err, decode){
-        user.findOne({"_id":decode, "token":token}, function(err, user){
+        user.findOne({"_id": decode, "token": token}, function(err, user){
             if(err) return cb(err);
             cb(null, user);
         })

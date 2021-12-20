@@ -17,7 +17,7 @@ function LikeDislikes(props) {
         variable = { videoId : props.videoId, userId: props.userId }
     } else {
        // variable = {commentId, userId}
-       variable = {commentId : props.commentId, userId:props.userId }
+       variable = { commentId : props.commentId, userId: props.userId }
     }
 
     useEffect(() => {
@@ -63,7 +63,6 @@ function LikeDislikes(props) {
     }, [])
 
     const onLike =() => {
-
         if(LikeAction === null) {
             Axios.post('/api/like/upLike', variable )
                 .then(response => {
@@ -82,10 +81,8 @@ function LikeDislikes(props) {
             Axios.post('/api/like/unLike', variable )
             .then(response => {
                 if(response.data.success) {
-                  
                     setLikes(Likes - 1)
                     setLikeAction(null)
-
                 } else {
                     alert('Like 를 내리지 못하였습니다.')
                 }
@@ -96,7 +93,6 @@ function LikeDislikes(props) {
     const onDisLike = () => {
 
         if(DisLikeAction === null) {
-
             Axios.post('/api/like/unDislike' , variable)
                 .then (response => {
                     if(response.data.success) {
@@ -106,21 +102,17 @@ function LikeDislikes(props) {
                         alert('dislike 을 지우지 못하였습니다.')
                     }
                 })
-
         } else {
             Axios.post('/api/like/upDislike' , variable)
             .then (response => {
                 if(response.data.success) {
-                   
                     setDislikes(Dislikes + 1)
                     setDisLikeAction('disliked')
-
                     if(LikeAction !== null) {
                         setLikeAction(null)
                         setLikes(Likes - 1)
                     }
-
-                } else {
+                } else { 
                     alert('dislike 을 지우지 못하였습니다.')
                 }
             })
