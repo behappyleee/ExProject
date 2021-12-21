@@ -11,11 +11,9 @@ let storage = multer.diskStorage({
     
     destination: (req, files, cb) => {
         cb(null, '../uploads/');
-        console.log('storage ~~~ 1');
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}_${file.originalname}`);
-        console.log('storage ~~~ 2');
     },
     fileFilter: (req, file, cb) => {
         const ext = path.exname(file.originalname)
@@ -33,15 +31,12 @@ const upload = multer({ storage: storage }).single('file');
 // post request 는 포스트 get request 는 get 으로 router 사용 하기
 // req, res 는 call back 함수임 req 를 통하여 파일을 받음
 router.post("/uploadfiles", (req, res) => {
-    console.log('/upload video page ~~', req);
     // Client 에서 받은 video 를 server에 저장하기
     upload(req, res, (err) => {
         if(err) {
-            console.log('upload files ', req);
             return res.json({ success: false, err })
         } else {
             // res 는 들어간 파일 경로를 client 에게 보내줌
-            console.log('success ~N !!!'); 
             return res.json({ 
                 success: true, 
                 url: res.req.file.path, 
